@@ -1,6 +1,6 @@
 <?php
 // required headers
-header("Access-Control-Allow-Origin: http://localhost:8080/hargaeceran/");
+header("Access-Control-Allow-Origin: * ");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
@@ -20,6 +20,7 @@ $user = new User($db);
  
 // check email existence
 // get posted data
+
 $data = json_decode(file_get_contents("php://input"));
  
 // set product property values
@@ -37,12 +38,13 @@ use \Firebase\JWT\JWT;
 // generate jwt
 // check if email exists and if password is correct
 if($email_exists && password_verify($data->password, $user->password)){
- 
+    $issuedat_claim = time();
     $token = array(
        "iss" => $iss,
        "aud" => $aud,
-       "iat" => $iat,
-       "nbf" => $nbf,
+       "iat" => $issuedat_claim,
+       "nbf" => $issuedat_claim+1,
+       "exp" => $issuedat_claim+120,
        "data" => array(
            "id" => $user->id,
            "name" => $user->name,
@@ -58,7 +60,7 @@ if($email_exists && password_verify($data->password, $user->password)){
     echo json_encode(
             array(
                 "message" => "Successful login.",
-                "jwt" => $jwt
+                "token" => $jwt
             )
         );
  
