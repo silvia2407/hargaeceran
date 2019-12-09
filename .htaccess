@@ -4,4 +4,8 @@ RewriteRule ^login/?$ login.php [NC,L]
 RewriteRule .* - [e=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 RewriteRule ^kota/all?$ kota/read.php [NC,L]
 RewriteRule ^komoditas/all?$ komoditas/all.php [NC,L]
+#RewriteRule ^pertumbuhan/monthOnmonth/kota/([a-zA-Z0-9]+)/komoditas/([a-zA-Z0-9]+)/tahun/([0-9]+)/bulan/([0-9]+)$ pertumbuhan/monthOnmonth.php?kota=$1&komoditas=$2&tahun=$3&bulan=$4
+#RewriteRule ^pertumbuhan/monthOnmonth/([a-zA-Z0-9]+) pertumbuhan/monthOnmonth.php?$1
+#RewriteRule ^pertumbuhan/yearOnyear/kota/([a-zA-Z0-9]+)/komoditas/([a-zA-Z0-9]+)/tahun/([0-9]+)/bulan/([0-9]+)$ pertumbuhan/yearOnyear.php?kota=$1&komoditas=$2&tahun=$3&bulan=$4
+#RewriteRule ^pertumbuhan/weeklyPrice/kota/([a-zA-Z0-9]+)/komoditas/([a-zA-Z0-9]+)/tahun/([0-9]+)/bulan/([0-9]+)$ pertumbuhan/yearOnyear.php?kota=$1&komoditas=$2&tahun=$3&bulan=$4
 #RewriteRule ^products/([0-9]+)/?$ products.php?product_id=$1 [NC,L]
